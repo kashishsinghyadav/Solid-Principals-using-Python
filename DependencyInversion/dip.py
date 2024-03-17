@@ -19,7 +19,6 @@ class SMSService(NotificationService):
 class PushNotificationService(NotificationService):
     def send_notification(self, message):
         print(f"Sending push notification: {message}")
-
 class NotificationManager:
     def __init__(self, services):
         self.services = services
