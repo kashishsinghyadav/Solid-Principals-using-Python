@@ -6,9 +6,9 @@ import smtplib,ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 class User:
-    def Registeruser(self,uname,password,email):
+    def Registeruser(self,uname,password,email,age):
         con=sqlite3.connect('sqlbd.db')
-        sql="insert into user value ('{0}','{1}','{2}')".format(uname,password,email)
+        sql="insert into user value ('{0}','{1}','{2}','{3}')".format(uname,password,email,age)
         con.execute(sql)
         con.commit()
         print(f"user is successfullty register with {uname} with {password}")
@@ -30,8 +30,8 @@ class Email:
         message=MIMEMultipart('alternative')
         message["From"]=sender_mail
         message['To']=subject
-        message_content= f'Hello,<br/><b>Message from kaashish </b><br/>
-        {message_content}<br/> all the best,<br/>'
+        message_content = f'Hello,<br/><b>Message from kaashish </b><br/>{message_content}<br/>all the best,<br/>'
+
         part=MIMEText(message_content,"html")
         message.attach(part)
         with smtplib.SMTP_SSL(smtp_server,port,context=context) as server:
@@ -42,9 +42,9 @@ class Email:
 
 
 class Register:
-    def Registeruser(self,uname,pwd,email):
+    def Registeruser(self,uname,pwd,email,age):
         try:
-            User().Registeruser(uname,pwd,email)
+            User().Registeruser(uname,pwd,email,age)
             Email().Sendmail(email,'You have succesfully resgister')
 
         except Exception:
@@ -52,5 +52,5 @@ class Register:
 
 
 obj=Register()
-obj.Registeruser('kashish','lajibolala','kashishhsinghhh@gmail.com')
+obj.Registeruser('kashish','lajibolala','kashishhsinghhh@gmail.com','21')
 
