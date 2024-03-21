@@ -6,7 +6,7 @@ from abc import ABC,abstractmethod
 class Shape(ABC):# python not support interface so we used abstractclass+ multiple inheritance 
     @abstractmethod
     def area(self):
-        pass 
+        pass
 
 class Square(Shape):
     def __init__(self,side):
